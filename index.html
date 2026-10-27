@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f5f3ee" />
+    <title>Entre páginas — Lector de PDF</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="#" aria-label="Entre páginas, inicio">
+          <span class="brand-mark" aria-hidden="true">e</span>
+          <span>entre páginas</span>
+        </a>
+        <div class="topbar-note"><span class="status-dot"></span> Tu espacio de lectura</div>
+      </header>
+
+      <main class="layout">
+        <aside class="sidebar" aria-label="Biblioteca">
+          <div class="sidebar-heading">
+            <div>
+              <p class="eyebrow">TU BIBLIOTECA</p>
+              <h1>Mis libros</h1>
+            </div>
+            <span class="book-count" id="bookCount">0</span>
+          </div>
+
+          <!-- Pestañas para cambiar entre Local y Google Drive -->
+          <div class="library-tabs" style="display: flex; gap: 8px; margin-bottom: 15px;">
+            <button id="tabLocal" class="primary-button" style="flex:1; padding: 6px; font-size: 10px;">Locales</button>
+            <button id="tabDrive" class="primary-button" style="flex:1; padding: 6px; font-size: 10px; background: #858980;">Google Drive</button>
+          </div>
+
+          <!-- Sección Local -->
+          <div id="sectionLocal">
+            <label class="upload-card" for="pdfInput" id="dropZone">
+              <span class="upload-icon" aria-hidden="true">＋</span>
+              <span class="upload-title">Añadir un libro</span>
+              <span class="upload-copy">Elige un PDF o arrástralo aquí</span>
+            </label>
+            <input id="pdfInput" type="file" accept="application/pdf,.pdf" hidden />
+          </div>
+
+          <!-- Sección Google Drive (Mangas) -->
+          <div id="sectionDrive" hidden>
+            <p class="eyebrow" style="margin-bottom: 8px;">MANGAS EN LA NUBE</p>
+            <div id="driveMangaList" class="library-list">
+              <p class="library-empty">Cargando mangas de Drive...</p>
+            </div>
+          </div>
+
+          <div class="library-list" id="libraryList">
+            <p class="library-empty" id="libraryEmpty">Tus libros locales aparecerán aquí.</p>
+          </div>
+
+          <div class="privacy-note">
+            <span aria-hidden="true">🔒</span>
+            <p>Tus archivos locales se abren en este navegador y los de Drive se cargan desde la nube.</p>
+          </div>
+        </aside>
+
+        <section class="reader" id="reader" aria-label="Lector de libros PDF">
+          <div class="reader-toolbar">
+            <div class="document-info">
+              <span class="file-icon" aria-hidden="true">PDF</span>
+              <div class="document-text">
+                <p class="eyebrow">LECTOR</p>
+                <h2 id="documentName">Ningún libro abierto</h2>
+              </div>
+            </div>
+            <div class="toolbar-actions">
+              <a class="toolbar-button" id="downloadLink" href="#" download hidden aria-label="Descargar PDF" title="Descargar PDF">↓</a>
+              <button class="toolbar-button" id="fullscreenButton" type="button" aria-label="Ver en pantalla completa" title="Pantalla completa">⛶</button>
+            </div>
+          </div>
+
+          <div class="reading-area" id="readingArea">
+            <div class="empty-state" id="emptyState">
+              <div class="empty-illustration" aria-hidden="true">
+                <div class="book-back"></div>
+                <div class="book-page"><span></span><span></span><span></span><span></span></div>
+                <div class="book-spine"></div>
+              </div>
+              <p class="eyebrow">UN BUEN LUGAR PARA EMPEZAR</p>
+              <h3>Tu próxima lectura<br />te está esperando.</h3>
+              <p class="empty-description">Abre un libro en PDF para leerlo cómodamente aquí.</p>
+              <button class="primary-button" id="chooseButton" type="button">Abrir un PDF <span aria-hidden="true">↗</span></button>
+            </div>
+            <iframe id="pdfViewer" title="Documento PDF" hidden></iframe>
+          </div>
+          <footer class="reader-footer"><span>ENTRE PÁGINAS</span><span>Lee a tu ritmo.</span></footer>
+        </section>
+      </main>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
